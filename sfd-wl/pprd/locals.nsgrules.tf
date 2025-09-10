@@ -1,0 +1,150 @@
+locals {
+  nsg_rules = {
+    rule01 = {
+      name                         = "AllowGatewayManagerInbound"
+      description                  = "Allow Gateway Manager Inbound"
+      priority                     = 130
+      direction                    = "Inbound"
+      access                       = "Allow"
+      protocol                     = "Tcp"
+      source_port_range            = "*"
+      destination_port_range       = "443"
+      source_address_prefix        = "GatewayManager"
+      destination_address_prefix   = "*"
+      source_port_ranges           = null
+      destination_port_ranges      = null
+      source_address_prefixes      = null
+      destination_address_prefixes = null
+    },
+    rule02 = {
+      name                         = "AllowHttpsInbound"
+      description                  = "Allow Https Inbound"
+      priority                     = 120
+      direction                    = "Inbound"
+      access                       = "Allow"
+      protocol                     = "Tcp"
+      source_port_range            = "*"
+      destination_port_range       = "443"
+      source_address_prefix        = "Internet"
+      destination_address_prefix   = "*"
+      source_port_ranges           = null
+      destination_port_ranges      = null
+      source_address_prefixes      = null
+      destination_address_prefixes = null
+    },
+
+    rule03 = {
+      name                         = "AllowAzureLoadBalancerInbound"
+      description                  = "Allow Azure Load Balancer Inbound"
+      priority                     = 140
+      direction                    = "Inbound"
+      access                       = "Allow"
+      protocol                     = "Tcp"
+      source_port_range            = "*"
+      destination_port_range       = "443"
+      source_address_prefix        = "AzureLoadBalancer"
+      destination_address_prefix   = "*"
+      source_port_ranges           = null
+      destination_port_ranges      = null
+      source_address_prefixes      = null
+      destination_address_prefixes = null
+    },
+    rule04 = {
+      name                         = "AllowBastionHostCommunication"
+      description                  = "Allow Bastion Host Communication"
+      priority                     = 150
+      direction                    = "Inbound"
+      access                       = "Allow"
+      protocol                     = "*"
+      source_port_range            = "*"
+      destination_port_range       = null
+      source_address_prefix        = "VirtualNetwork"
+      destination_address_prefix   = "VirtualNetwork"
+      source_port_ranges           = null
+      destination_port_ranges      = ["8080", "5701"]
+      source_address_prefixes      = null
+      destination_address_prefixes = null
+    },
+    rule05 = {
+      name                         = "AllowSshRdpOutbound"
+      description                  = "Allow Ssh Rdp Out bound"
+      priority                     = 100
+      direction                    = "Outbound"
+      access                       = "Allow"
+      protocol                     = "*"
+      source_port_range            = "*"
+      destination_port_range       = null
+      source_address_prefix        = "*"
+      destination_address_prefix   = "VirtualNetwork"
+      source_port_ranges           = null
+      destination_port_ranges      = ["22", "3389"]
+      source_address_prefixes      = null
+      destination_address_prefixes = null
+    },
+    rule06 = {
+      name                         = "AllowAzureCloudOutbound"
+      description                  = "Allow Azure Cloud Outbound"
+      priority                     = 110
+      direction                    = "Outbound"
+      access                       = "Allow"
+      protocol                     = "Tcp"
+      source_port_range            = "*"
+      destination_port_range       = "443"
+      source_address_prefix        = "*"
+      destination_address_prefix   = "AzureCloud"
+      source_port_ranges           = null
+      destination_port_ranges      = null
+      source_address_prefixes      = null
+      destination_address_prefixes = null
+    },
+    rule07 = {
+      name                         = "AllowBastionCommunication"
+      description                  = "Allow Bastion Communication"
+      priority                     = 120
+      direction                    = "Outbound"
+      access                       = "Allow"
+      protocol                     = "*"
+      source_port_range            = "*"
+      destination_port_range       = null
+      source_address_prefix        = "VirtualNetwork"
+      destination_address_prefix   = "VirtualNetwork"
+      source_port_ranges           = null
+      destination_port_ranges      = ["8080", "5701"]
+      source_address_prefixes      = null
+      destination_address_prefixes = null
+    },
+    rule08 = {
+      name                         = "AllowHttpOutbound"
+      description                  = "Allow Http Out bound"
+      priority                     = 130
+      direction                    = "Outbound"
+      access                       = "Allow"
+      protocol                     = "*"
+      source_port_range            = "*"
+      destination_port_range       = "80"
+      source_address_prefix        = "*"
+      destination_address_prefix   = "Internet"
+      source_port_ranges           = null
+      destination_port_ranges      = null
+      source_address_prefixes      = null
+      destination_address_prefixes = null
+    },
+
+    rule09 = {
+      name                         = "AllowMySQLServerInbound"
+      description                  = "Allow MySQL Server Inbound"
+      priority                     = 100
+      direction                    = "Inbound"
+      access                       = "Allow"
+      protocol                     = "Tcp"
+      source_port_range            = "*"
+      destination_port_range       = "3306"
+      source_address_prefix        = "VirtualNetwork"
+      destination_address_prefix   = "*"
+      source_port_ranges           = null
+      destination_port_ranges      = null
+      source_address_prefixes      = null
+      destination_address_prefixes = null
+    }
+  }
+}
